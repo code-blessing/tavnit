@@ -1,0 +1,37 @@
+<html lang="en">
+
+<!--
+
+@tt{{{
+  @move-comment-backward
+
+  @template-renderer
+     [ templateRendererClassName="HtmlListPageRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" ]
+     [ modelName="listPageModel" modelClassName="HtmlListModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+
+  @replace-value-by-expression
+    [ searchValue="News" replaceByExpression="listPageModel.pageTitle" ]
+    [ searchValue="news" replaceByExpression="listPageModel.pageTitle.lowercase()" ]
+
+}}}@
+-->
+
+<head><title>News</title></head>
+<body>
+<p>Here are the news:</p>
+<ul><!--
+@tt{{{
+
+  @foreach [iteratorExpression="listPageModel.allListEntries" loopVariable="pageArticleTitle"]
+  @replace-value-by-expression [ searchValue="How to make your garden ready in the spring" replaceByExpression="pageArticleTitle" ]
+
+}}}@
+-->
+    <li>How to make your garden ready in the spring</li><!-- @tt{{{ @end-replace-value-by-expression @end-foreach @ignore-text }}}@ -->
+    <li>Five keys to become rich in one year</li>
+    <li>What's up with Prince Charles?</li><!-- @tt{{{ @end-ignore-text }}}@ -->
+</ul>
+
+</body>
+<!-- @tt{{{ @end-replace-value-by-expression }}}@ -->
+</html>

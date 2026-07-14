@@ -1,0 +1,150 @@
+/* @tt{{{
+   @template-renderer [
+    templateRendererClassName="EntityDto"
+    templateRendererPackageName="examples"
+   ][
+    modelClassName="DtoModel"
+    modelPackageName="examples"
+    modelName="myModel"
+   ][
+    modelClassName="DtoModel"
+    modelPackageName="examples"
+    modelName="mySecondModel"
+   ]
+}}}@ */
+
+/* @tt{{{
+       @replace-value-by-expression [searchValue="Author" replaceByExpression="myModel.entityCapitalized"]
+                                    [searchValue="author" replaceByExpression="myModel"]
+       @modify-provided-filepath-by-replacements
+}}}@ */
+data class AuthorDto(// @tt{{{ @replace-value-by-expression [ searchValue="firstname" replaceByExpression="myModel.entityField" ] }}}@
+  val firstname: String,// @tt{{{ @end-replace-value-by-expression }}}@
+  val lastname: String,
+) {
+
+    fun describeAuthorInstance(): String {
+      val instance = "$this"
+      return "Instance with lastname ${lastname} is $instance."
+    }
+
+    fun getAuthor(): AuthorDto {
+        return this;
+    }
+
+/* @tt{{{ @replace-value-by-value [searchValue="Another" replaceByValue="Other"] }}}@ */
+
+    fun getAnotherAuthor(): AuthorDto {
+        return this;
+    }
+
+// @tt{{{ @end-replace-value-by-value }}}@
+
+/* @tt{{{ @if [ conditionExpression="myModel.isGenerateToString()" ]}}}@ */
+  fun toString(): String {
+    return "Author[${super.toString()}]"
+  }
+/* @tt{{{ @end-if}}}@ */
+/* @tt{{{ @end-replace-value-by-expression}}}@ */
+
+  // This author and Author should not be replaced.
+
+  // test for nested replace expressions
+/* @tt{{{ @replace-value-by-expression [searchValue="Author" replaceByExpression="myModel.entityName"]
+                                    [searchValue="author" replaceByExpression="myModel.entityNameDecapitalized"]
+}}}@ */
+
+/* @tt{{{ @replace-value-by-expression [
+       searchValue="Author" replaceByExpression="myModel.entityNameCapitalized"
+]}}}@ */
+
+      // should use 'Capitalized' version
+      fun getAuthor(): Author {
+          return author
+      }
+
+/* @tt{{{ @end-replace-value-by-expression}}}@ */
+/* @tt{{{ @end-replace-value-by-expression}}}@ */
+
+  // test chained nested replace (inner command replaces first)
+/* @tt{{{ @replace-value-by-value [searchValue="B" replaceByValue="C"]}}}@ */
+/* @tt{{{ @replace-value-by-value [searchValue="A" replaceByValue="B"]}}}@ */
+      val chained = "A"
+/* @tt{{{ @end-replace-value-by-value}}}@ */
+/* @tt{{{ @end-replace-value-by-value}}}@ */
+
+
+  // test the if..else..end-if statement
+/* @tt{{{ @if [ conditionExpression="myModel.isSerializable()" ]}}}@ */
+        fun isSerialize(): Boolean = true
+/* @tt{{{ @else }}}@ */
+        fun isSerialize(): Boolean = false
+/* @tt{{{ @end-if}}}@ */
+
+  // test the if..else-if..end-if statement
+
+  val visibility: String =
+/* @tt{{{ @if [ conditionExpression="myModel.isPrivate()" ]}}}@ */
+        "private"
+/* @tt{{{ @else-if [ conditionExpression="myModel.isProtected()" ]}}}@ */
+        "protected"
+/* @tt{{{ @else-if [ conditionExpression="myModel.isPublic()" ]}}}@ */
+        "public"
+/* @tt{{{ @end-if}}}@ */
+
+
+  // test the if..else-if..else..end-if statement
+  val mainCharacteristic: String =
+/* @tt{{{ @if [ conditionExpression="myModel.isEnum()" ]}}}@ */
+        "enum-class"
+/* @tt{{{ @else-if [ conditionExpression="myModel.isDataClass()" ]}}}@ */
+        "data-class"
+/* @tt{{{ @else }}}@ */
+        "regular-class"
+/* @tt{{{ @end-if}}}@ */
+
+  // test the foreach..end-foreach statement
+/* @tt{{{ @foreach [ iteratorExpression="myModel.myFieldList" loopVariable="field" ]}}}@ */
+        println("field: $field")
+/* @tt{{{ @end-foreach}}}@ */
+
+  // test the ignore-text statement
+
+/* @tt{{{ @ignore-text}}}@ */
+// THIS TEXT SHOULD NOT BE ON THE OUTPUT!!!
+/* @tt{{{ @end-ignore-text}}}@ */
+
+  // test the ignore-text statement with nesting
+/* @tt{{{ @ignore-text}}}@ */
+/* @tt{{{ @if [ conditionExpression="myModel.isIgnored()" ]}}}@ */
+  // THIS TEXT SHOULD NOT BE ON THE OUTPUT!!!
+/* @tt{{{ @else-if [ conditionExpression="myModel.isIgnoredToo()()" ]}}}@ */
+  // THIS TEXT SHOULD NOT BE ON THE OUTPUT!!!
+/* @tt{{{ @else}}}@ */
+  // THIS TEXT SHOULD NOT BE ON THE OUTPUT!!!
+/* @tt{{{ @end-if}}}@ */
+  // THIS TEXT SHOULD NOT BE ON THE OUTPUT!!!
+/* @tt{{{ @end-ignore-text}}}@ */
+  // end of test the ignore-text statement with nesting
+
+  // test the print-text command
+
+/* @tt{{{ @print-text [ text="This text is to print" ]}}}@ */
+/* @tt{{{ @print-text [ text="
+
+and this text, too
+
+" ]}}}@ */
+
+  // end of test the print-text command
+
+  // test the render-template command
+
+/* @tt{{{ @render-template [templateRendererClassName="SubRenderer" templateRendererPackageName="examples.sub"]
+                           [modelName="innerModel" modelExpression="myModel.getInnerModel()"]
+                           [modelName="config" modelExpression="mySecondModel.config"]
+}}}@ */
+
+  // end of test the render-template command
+
+}

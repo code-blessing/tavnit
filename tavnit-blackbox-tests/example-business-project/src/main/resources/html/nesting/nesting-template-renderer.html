@@ -1,0 +1,30 @@
+<html lang="en">
+<!-- @tt{{{
+    @remark [ text="test that the renderer with inner commands produces the replaced content at the renamed path"]
+    @remark [ text="test that the sibling renderer is unaffected by the inner commands of the other renderer"]
+    @remark [ text="test that add-import-to-renderer only adds the import to its own renderer class"]
+}}}@ -->
+<body>
+    <ul>
+        <!-- @tt{{{
+            @template-renderer [ templateRendererClassName="NestingTemplateFancyRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ] [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+            @replace-value-by-value [ searchValue="TOKEN" replaceByValue="REPLACED-IN-A" ]
+                [ searchValue="nesting-template-renderer.html" replaceByValue="fancy-output.html" ]
+            @add-import-to-renderer [ importClassName="DayOfWeek" importPackageName="java.time" ]
+            @replace-value-by-expression [ searchValue="DAY" replaceByExpression="DayOfWeek.MONDAY" ]
+            @replace-value-by-value [ searchValue="nesting-template-renderer.html" replaceByValue="nesting-template-renderer-fancy-output.html" ]
+            @modify-provided-filepath-by-replacements
+        }}}@ -->
+        <li class="fancy">TOKEN rendered on DAY</li>
+        <!-- @tt{{{ @end-template-renderer }}}@ -->
+        <!-- @tt{{{
+            @template-renderer [ templateRendererClassName="NestingTemplatePlainRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ] [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+            @replace-value-by-value [ searchValue="DAY" replaceByValue="Day" ]
+            @replace-value-by-value [ searchValue="nesting-template-renderer.html" replaceByValue="nesting-template-renderer-plain-output.html" ]
+            @modify-provided-filepath-by-replacements
+         }}}@ -->
+        <li class="plain">TOKEN rendered on DAY</li>
+        <!-- @tt{{{ @end-template-renderer }}}@ -->
+    </ul>
+</body>
+</html>

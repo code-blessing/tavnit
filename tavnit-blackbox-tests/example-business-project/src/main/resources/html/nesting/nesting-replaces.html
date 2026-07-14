@@ -1,0 +1,33 @@
+<!--
+    @tt{{{
+        @template-renderer [ templateRendererClassName="NestingReplacesRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ] [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+        @replace-value-by-value [ searchValue="ONE" replaceByValue="TWO" ][ searchValue="TWO" replaceByValue="THREE" ]
+    }}}@
+-->
+<html lang="en">
+<body>
+    <ul>
+    <li>within-comment-order: ONE</li>
+    <!--
+        @tt{{{
+            @replace-value-by-value [ searchValue="ZERO" replaceByValue="ONE" ]
+            @replace-value-by-expression [ searchValue="EXPRTOKEN" replaceByExpression="40 + 2" ]
+        }}}@
+    -->
+    <li>innermost-first: ZERO</li>
+    <li>expression: EXPRTOKEN</li>
+    <!--
+        @tt{{{
+            @end-replace-value-by-expression
+            @end-replace-value-by-value
+        }}}@
+    -->
+    <li>after-inner: ZERO</li>
+    </ul>
+    <!--
+        @tt{{{
+            @end-template-renderer
+        }}}@
+    -->
+</body>
+</html>

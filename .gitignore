@@ -1,0 +1,8 @@
+.gradle
+.idea
+**/.gradle
+build
+**/build
+db/**
+tmp
+*.todo.*

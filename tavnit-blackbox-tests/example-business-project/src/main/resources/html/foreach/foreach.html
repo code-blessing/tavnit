@@ -1,0 +1,33 @@
+<html lang="en">
+
+<!--
+@tt{{{
+  @move-comment-backward
+  @template-renderer [ templateRendererClassName="ForeachRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ]
+              [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+  @replace-value-by-expression
+    [ searchValue="News" replaceByExpression="model.articleTitle" ]
+    [ searchValue="news" replaceByExpression="model.articleTitle.lowercase()" ]
+
+}}}@
+-->
+
+<head><title>News</title></head>
+<body>
+<p>Here are the news:</p>
+<ul><!--
+@tt{{{
+
+  @foreach [iteratorExpression="model.listOfArticleNames" loopVariable="articleName"]
+  @replace-value-by-expression [ searchValue="How to make your garden ready in the spring" replaceByExpression="articleName" ]
+
+}}}@
+-->
+    <li>How to make your garden ready in the spring</li><!-- @tt{{{ @end-replace-value-by-expression @end-foreach @ignore-text }}}@ -->
+    <li>Five keys to become rich in one year</li>
+    <li>What's up with Prince Charles?</li><!-- @tt{{{ @end-ignore-text }}}@ -->
+</ul>
+
+</body>
+<!-- @tt{{{ @end-replace-value-by-expression }}}@ -->
+</html>

@@ -1,0 +1,72 @@
+plugins {
+    `java-library`
+    `maven-publish`
+    signing
+}
+
+group = "org.codeblessing.tavnit"
+version = project.property("tavnit.version") as String
+
+
+val publicationName = "mavenTavnit"
+
+configure<JavaPluginExtension> {
+    withJavadocJar()
+    withSourcesJar()
+
+}
+
+val publishingExtension: PublishingExtension = extensions.getByType<PublishingExtension>()
+
+publishingExtension.repositories {
+    maven {
+        credentials {
+            username = project.properties.getOrDefault("sourceamazing.ossrhUsername", "<no username>") as String
+            password = project.properties.getOrDefault("sourceamazing.ossrhPassword", "<no password>") as String
+        }
+
+        val releasesRepoUrl = uri("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/")
+        val snapshotsRepoUrl = uri("https://central.sonatype.com/repository/maven-snapshots/")
+        url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+    }
+}
+
+publishingExtension.publications {
+    create<MavenPublication>(publicationName) {
+        groupId = project.group as String
+        version = project.version as String
+
+        from(components["java"])
+
+        pom {
+            url.set("http://www.codeblessing.org")
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set("https://opensource.org/license/mit/")
+                }
+            }
+            developers {
+                developer {
+                    name.set("Jonathan Weiss")
+                    email.set("jonathan.weiss@codeblessing.org")
+                }
+            }
+            scm {
+                connection.set("scm:git:git@github.com:code-blessing/tavnit.git")
+                url.set("https://github.com/code-blessing/tavnit")
+            }
+        }
+    }
+}
+
+configure<SigningExtension> {
+    useGpgCmd()
+    sign(publishingExtension.publications[publicationName])
+}
+
+tasks.getByName<Javadoc>("javadoc") {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
+}

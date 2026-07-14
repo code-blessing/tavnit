@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- @tt{{{
+      @move-comment-backward
+      @template-renderer [
+        templateRendererClassName="MoveRenderer"
+        templateRendererPackageName="org.codeblessing.tavnit.example.renderer"
+        templateRendererInterfaceName="RendererWithBlackboxDefaultModel"
+        templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer"
+        ] [
+        modelName="model"
+        modelClassName="BlackboxDefaultModel"
+        modelPackageName="org.codeblessing.tavnit.example.renderer.model"
+        ]
+    }}}@ -->
+<body>
+    <ul>
+        <li id="b1">Clean Code</li><!-- @tt{{{ @move-comment-backward [ afterFirstOccurrenceOf="<li" ] @print-text [ text=" lang='en'" ] }}}@ -->
+        <li id="b2"><span>Refactoring</span><!-- @tt{{{ @move-comment-forward [ beforeFirstOccurrenceOf="<aside>" ] @ignore-text }}}@ --><aside>classified</aside><!-- @tt{{{ @end-ignore-text }}}@ --></li>
+        <li><!-- a plain html comment the move below travels across -->VALUE<!-- @tt{{{ @move-comment-backward [ afterLastOccurrenceOf="<li>" ] @print-text [ text="moved-across-normal-comment:" ] }}}@ --></li>
+        <li>x,y,z<!-- @tt{{{ @move-comment-forward [ afterLastOccurrenceOf="," ] @print-text [ text="(last)" ] }}}@ -->,w<!-- @tt{{{ @remark [ text="Any comment stops the forward move" ] }}}@ -->,UNREACHABLE</li>
+    </ul>
+</body>
+</html>

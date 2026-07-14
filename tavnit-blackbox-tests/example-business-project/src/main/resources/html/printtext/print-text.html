@@ -1,0 +1,13 @@
+<!-- @tt{{{
+    @template-renderer [ templateRendererClassName="PrintTextRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ] [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+}}}@ -->
+<html lang="en">
+<body>
+    <ul>
+        <li>normal text START<!-- @tt{{{ @print-text [ text="inserted-text" ] }}}@ -->END</li>
+        <li>blanks only START<!-- @tt{{{ @print-text [ text="   " ] }}}@ -->END</li>
+        <li>special characters START<!-- @tt{{{ @print-text [ text="a $dollar and \"\"\" quotes" ] }}}@ -->END</li>
+        <li>raw kotlin string val s = """text""" and a $variable</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html lang="en">
+<body>
+    <ul>
+        <!-- @tt{{{
+            @template-renderer
+                [ templateRendererClassName="NestedElseRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ]
+                [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+        }}}@ -->
+        <!-- @tt{{{ @if [ conditionExpression="model.isTrueAttribute" ] }}}@ -->
+        <li class="book">Yes, 'if' is true</li>
+        <!-- @tt{{{ @if [ conditionExpression="model.isFalseAttribute" ] }}}@ -->
+        <li class="badge">Yes, nested 'if' is true</li>
+        <!-- @tt{{{ @else }}}@ -->
+        <li class="badge">Yes, nested 'else' is true</li>
+        <!-- @tt{{{ @end-if }}}@ -->
+        <!-- @tt{{{ @else-if [ conditionExpression="model.isTrueAttribute" ] }}}@ -->
+        <li class="movie">Yes, 'else-if' is true</li>
+        <!-- @tt{{{ @else }}}@ -->
+        <li class="other">Yes, 'else' is true</li>
+        <!-- @tt{{{ @end-if }}}@ -->
+        <!-- @tt{{{ @end-template-renderer }}}@ -->
+    </ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/*
+ * This file is generated using tavnit.
+ */
+package org.codeblessing.tavnit.template
+
+import org.codeblessing.tavnit.template.model.TemplateModel
+
+/**
+ * Generate the content for the template `TemplateTest`.
+ *
+ * This template renderer was generated from the template:
+ * - file: `dummy.txt`
+ * - path: `dum-dir/dum-sub-dir/dummy.txt`
+ */
+object TemplateTest {
+
+    fun renderTemplate(model: TemplateModel, models: List<TemplateModel>): String {
+        return """
+          | hello world
+        """.trimMargin(marginPrefix = "|")
+    }
+
+    fun filePath(model: TemplateModel, models: List<TemplateModel>): String {
+      return "dum-dir/dum-sub-dir/dummy.txt"
+    }
+}

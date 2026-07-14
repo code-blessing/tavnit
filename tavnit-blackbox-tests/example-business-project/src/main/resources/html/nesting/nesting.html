@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<!-- @tt{{{
+  @template-renderer
+    [ templateRendererClassName="NestingRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ]
+    [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+  }}}@ -->
+<ul>
+<!-- @tt{{{ @foreach [ iteratorExpression="model.allListEntries" loopVariable="entry" ]
+  @replace-value-by-expression [ searchValue="ENTRY" replaceByExpression="entry" ]
+  @replace-value-by-value [ searchValue="MARK" replaceByValue="*" ] }}}@ -->
+<!-- @tt{{{ @if [ conditionExpression="entry.isNotBlank()" ] }}}@ -->
+  <li>MARK ENTRY</li>
+<!-- @tt{{{ @end-if }}}@ -->
+<!-- @tt{{{ @end-foreach }}}@ -->
+</ul>
+<p>tail: MARK ENTRY</p>
+<!-- @tt{{{ @ignore-text }}}@ -->
+This body is ignored; its @end-ignore-text is auto-closed by @end-template-renderer below.
+<!-- @tt{{{ @end-template-renderer }}}@ -->
+</body>
+</html>

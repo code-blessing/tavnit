@@ -1,0 +1,27 @@
+<!-- @tt{{{
+    @template-renderer [ templateRendererClassName="WhitespaceHtmlRenderer" templateRendererPackageName="org.codeblessing.tavnit.example.renderer" templateRendererInterfaceName="RendererWithBlackboxDefaultModel" templateRendererInterfacePackageName="org.codeblessing.tavnit.example.renderer" ] [ modelName="model" modelClassName="BlackboxDefaultModel" modelPackageName="org.codeblessing.tavnit.example.renderer.model" ]
+}}}@ -->
+<html lang="en">
+<body>
+    <ul>
+        <li>default is applied as only whitespaces before and after the comment START
+           <!-- @tt{{{ @remark [ text="This is only to write a tavnit comment" ] }}}@ -->
+        END</li>
+        <li>default strips the blanks before and after the comment as there is text before the comment START
+x            <!-- @tt{{{ @remark [ text="This is only to write a tavnit comment" ] }}}@ -->
+            END</li>
+        <li>default is not applied as there is text after the comment START
+            <!-- @tt{{{ @remark [ text="This is only to write a tavnit comment" ] }}}@ -->x
+            END</li>
+        <li>default is not applied as disabled START
+            <!-- @tt{{{ @no-default-whitespace-remove }}}@ -->
+            END</li>
+        <li>rbb removes all whitespaces before comment START   <!-- @tt{{{ @remove-blanks-before-comment }}}@ -->END</li>
+        <li>rba removes all whitespaces after comment START<!-- @tt{{{ @remove-blanks-after-comment }}}@ -->   END</li>
+        <li>rlb removes all whitespaces and the linebreak before comment START
+        <!-- @tt{{{ @remove-blanks-and-linebreak-before-comment }}}@ -->END</li>
+        <li>rla removes all whitespaces and the linebreak after comment START<!-- @tt{{{ @remove-blanks-and-linebreak-after-comment }}}@ -->
+END</li>
+    </ul>
+</body>
+</html>
