@@ -21,3 +21,16 @@ dependencies {
     testImplementation(platform(libs.junit.bom))
     testImplementation("org.junit.jupiter:junit-jupiter-params")
 }
+
+//
+// Publishing
+//
+extensions.getByType<PublishingExtension>().publications {
+    getByName<MavenPublication>("mavenTavnit") {
+        artifactId = "tavnit-api"
+        pom {
+            name.set("Tavnit API")
+            description.set("The API for the tavnit project.")
+        }
+    }
+}

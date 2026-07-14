@@ -64,3 +64,16 @@ tasks.register<JavaExec>("generateSupportedFileFormatsDocumentation") {
     }
 }
 
+//
+// Publishing
+//
+extensions.getByType<PublishingExtension>().publications {
+    getByName<MavenPublication>("mavenTavnit") {
+        artifactId = "tavnit"
+        pom {
+            name.set("Tavnit Implementation")
+            description.set("The implementation of the tavnit-api.")
+        }
+    }
+}
+
