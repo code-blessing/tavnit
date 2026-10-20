@@ -170,8 +170,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.codeblessing.tavnit:tavnit-api:1.0.0")
-    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.0")
+    implementation("org.codeblessing.tavnit:tavnit-api:1.0.1")
+    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.1")
 }
 // ...
 ```
@@ -182,12 +182,12 @@ The same dependencies for [Maven](https://maven.apache.org/):
     <dependency>
         <groupId>org.codeblessing.tavnit</groupId>
         <artifactId>tavnit-api</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
     <dependency>
         <groupId>org.codeblessing.tavnit</groupId>
         <artifactId>tavnit</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <scope>runtime</scope>
     </dependency>
 </dependencies>
@@ -247,8 +247,8 @@ and thus from regenerating the renderers needed to fix the error — creating a 
 
 ```kotlin
 dependencies {
-    implementation("org.codeblessing.tavnit:tavnit-api:1.0.0")
-    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.0")
+    implementation("org.codeblessing.tavnit:tavnit-api:1.0.1")
+    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.1")
 }
 
 tasks.register<JavaExec>("generateTavnitRenderers") {

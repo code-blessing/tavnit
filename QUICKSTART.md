@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.codeblessing.tavnit:tavnit-api:1.0.0")
-    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.0")
+    implementation("org.codeblessing.tavnit:tavnit-api:1.0.1")
+    runtimeOnly("org.codeblessing.tavnit:tavnit:1.0.1")
 }
 ```
 
