@@ -203,6 +203,7 @@ configuration, so you can also redefine the comment styles of an already-support
 | `.mak` | `##` |
 | `.make` | `#` |
 | `.mako` | `##` |
+| `.md` | `<!-- -->` and `//` and `/* */` and `%%` |
 | `.mdx` | `<!-- -->` and `//` and `/* */` |
 | `.metal` | `//` and `/* */` |
 | `.mjs` | `//` and `/* */` |
