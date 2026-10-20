@@ -102,7 +102,7 @@ Here is an example HTML source code file (the file is named ```news.html```) enr
 Based on that given HTML input, tavnit will generate a kotlin renderer like this:
 ```kotlin
 /*
- * This file is generated using tavnit.
+ * This file is generated using https://github.com/code-blessing/tavnit
  */
 package org.codeblessing.tavnit.example.renderer
 
