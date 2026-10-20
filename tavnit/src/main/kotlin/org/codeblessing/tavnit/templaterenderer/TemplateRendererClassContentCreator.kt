@@ -99,7 +99,7 @@ object TemplateRendererClassContentCreator {
 
         return """
 /*
- * This file is generated using tavnit.
+ * This file is generated using https://github.com/code-blessing/tavnit
  */
 $packageDeclarationWithImports
 
